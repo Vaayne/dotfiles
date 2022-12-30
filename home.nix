@@ -12,7 +12,10 @@ in {
     homeDirectory = "${homeDirectory}";
     stateVersion = "${stateVersion}";
 
-    file = { ".config/nvim".source = "${nvChad}"; };
+    file = {
+      ".config/nvim/init.lua".source = "${nvChad}/init.lua";
+      ".config/nvim/lua".source = "${nvChad}/lua";
+    };
 
     # install golbal packages
     packages = with pkgs; [
