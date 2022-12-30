@@ -11,6 +11,9 @@ in {
     username = "${username}";
     homeDirectory = "${homeDirectory}";
     stateVersion = "${stateVersion}";
+
+    file = { ".config/nvim".source = "${nvChad}"; };
+
     # install golbal packages
     packages = with pkgs; [
       nixfmt
@@ -26,7 +29,6 @@ in {
       devbox
       rnix-lsp
       ripgrep
-      spacevim
     ];
   };
   programs = {
@@ -43,11 +45,6 @@ in {
       enable = true;
       viAlias = true;
       vimAlias = true;
-      #extraConfig = builtins.readFile "${nvChad}/init.lua";
-      #extraConfig = ''
-      #  :luafile ${nvChad}/init.lua
-      #'';
-      plugins = with pkgs.vimPlugins; [ SpaceVim ];
     };
 
     direnv = {
