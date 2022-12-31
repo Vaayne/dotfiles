@@ -1,4 +1,4 @@
-{ config, pkgs, nvChad, ... }:
+{ config, pkgs, nvChad, dotfiles, ... }:
 let
   username = "weliu";
   homeDirectory = "/Users/weliu";
@@ -14,7 +14,9 @@ in {
 
     file = {
       ".config/nvim/init.lua".source = "${nvChad}/init.lua";
-      ".config/nvim/lua".source = "${nvChad}/lua";
+      ".config/nvim/lua/core".source = "${nvChad}/lua/core";
+      ".config/nvim/lua/plugins".source = "${nvChad}/lua/plugins";
+      ".config/nvim/lua/custom".source = "${dotfiles}/configs/nvim/";
     };
 
     # install golbal packages
@@ -32,6 +34,8 @@ in {
       devbox
       rnix-lsp
       ripgrep
+      rustc
+      cargo
     ];
   };
   programs = {
@@ -48,6 +52,7 @@ in {
       enable = true;
       viAlias = true;
       vimAlias = true;
+      plugins = with pkgs.vimPlugins; [ vim-nix null-ls-nvim ];
     };
 
     direnv = {
@@ -68,7 +73,7 @@ in {
       enable = true;
       userEmail = "liu.vaayne@gmail.com";
       userName = "liu.vaayne";
-      ignores = [ ".idea" ".vacode" ".pyc" ];
+      ignores = [ ".idea" ".vscode" ".pyc" ".ruff_cache" ];
       delta = {
         enable = true;
         options = { line-numbers = true; };

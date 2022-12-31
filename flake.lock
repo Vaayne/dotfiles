@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672409526,
+        "narHash": "sha256-cg9SfdC6nxrYNtYmR3pJbz4DI5GaoEKrIPkQKq+9kDs=",
+        "owner": "Vaayne",
+        "repo": "dotfiles",
+        "rev": "75407dd8dbe6436b2a3f636dc7c043d3352a8d6c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Vaayne",
+        "repo": "dotfiles",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -70,6 +86,7 @@
     },
     "root": {
       "inputs": {
+        "dotfiles": "dotfiles",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",

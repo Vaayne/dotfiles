@@ -13,9 +13,13 @@
       url = "github:NvChad/NvChad";
       flake = false;
     };
+    dotfiles = {
+      url = "github:Vaayne/dotfiles";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, home-manager, nvChad, ... }:
+  outputs = { self, nixpkgs, flake-utils, home-manager, nvChad, dotfiles, ... }:
     let
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -28,6 +32,7 @@
           modules = [ ./home.nix ];
         extraSpecialArgs = {
           inherit nvChad;
+          inherit dotfiles;
         };
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
