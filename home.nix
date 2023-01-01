@@ -1,16 +1,12 @@
 { config, pkgs, nvChad, dotfiles, ... }:
-let
-  username = "weliu";
-  homeDirectory = "/Users/weliu";
-  stateVersion = "22.11";
+let env = import ./env.nix;
 
 in {
-
   nixpkgs = { config = { allowUnfree = true; }; };
   home = {
-    username = "${username}";
-    homeDirectory = "${homeDirectory}";
-    stateVersion = "${stateVersion}";
+    username = env.username;
+    homeDirectory = env.homeDirectory;
+    stateVersion = env.stateVersion;
 
     file = {
       ".config/nvim/init.lua".source = "${nvChad}/init.lua";
@@ -71,8 +67,8 @@ in {
 
     git = {
       enable = true;
-      userEmail = "liu.vaayne@gmail.com";
-      userName = "liu.vaayne";
+      userEmail = env.git.email;
+      userName = env.git.user;
       ignores = [ ".idea" ".vscode" ".pyc" ".ruff_cache" ];
       delta = {
         enable = true;
