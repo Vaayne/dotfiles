@@ -1,6 +1,6 @@
 {
   # for system please see: https://github.com/numtide/flake-utils/blob/master/default.nix#L14  
-  systerm = "";
+  system = "";
   username = "admin";
   homeDirectory = "/home/admin/";
   stateVersion = "22.11";
