@@ -25,6 +25,7 @@ in {
       pre-commit
       yarn
       python311
+      python311Packages.pip
       colima
       docker-client
       devbox
@@ -103,9 +104,10 @@ in {
         update = "sudo nixos-rebuild switch";
         k9s =
           "docker run --rm -it -v $KUBECONFIG:/root/.kube/config quay.io/derailed/k9s";
-        hmb = "home-manager build --flake $HOME/.config/nixpkgs#$USER";
+        hmb =
+          "cd $HOME/.config/nixpkgs && git add -f env.nix && home-manager build --flake .#$USER && git restore --stage env.nix && cd -";
         hms =
-          "nixfmt $HOME/.config/nixpkgs/home.nix && home-manager switch --flake $HOME/.config/nixpkgs#$USER";
+          "cd $HOME/.config/nixpkgs && git add -f env.nix && home-manager switch --flake .#$USER && git restore --stage env.nix && cd -";
       };
       history = { size = 10000; };
       # envs
