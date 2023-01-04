@@ -17,20 +17,28 @@ in {
 
     # install golbal packages
     packages = with pkgs; [
+      tmux
+
       nixfmt
       nixpkgs-fmt
       nodejs
+      yarn
+      nodePackages_latest.bitwarden-cli
       go
       tealdeer
+      # python
       pre-commit
-      yarn
       python311
       python311Packages.pip
+      # docker
       colima
       docker-client
+      docker-compose
       devbox
       rnix-lsp
       ripgrep
+      fzf
+      fd
       rustc
       cargo
     ];
@@ -62,15 +70,15 @@ in {
     lazygit.enable = true;
 
     starship = {
-      enable = false;
-      enableZshIntegration = false;
+      enable = true;
+      enableZshIntegration = true;
     };
 
     git = {
       enable = true;
       userEmail = env.git.email;
       userName = env.git.user;
-      ignores = [ ".idea" ".vscode" ".pyc" ".ruff_cache" ];
+      ignores = [ ".idea" ".vscode" ".pyc" ".ruff_cache" ".direnv" ];
       delta = {
         enable = true;
         options = { line-numbers = true; };
@@ -80,6 +88,7 @@ in {
           editor = "nvim";
           whitespace = "trailing-space,space-before-tab";
         };
+        init = { defaultBranch = "main"; };
       };
     };
 
@@ -116,6 +125,9 @@ in {
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD = true;
         EDITOR = "nvim";
       };
+      initExtra = ''
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      '';
       # plugins
       zplug = {
         enable = true;
@@ -132,16 +144,16 @@ in {
             name = "plugins/git";
             tags = [ "from:oh-my-zsh" ];
           }
-          {
-            name = "romkatv/powerlevel10k";
-            tags = [ "as:theme" "depth:1" ];
-          }
+          #   {
+          #     name = "romkatv/powerlevel10k";
+          #     tags = [ "as:theme" "depth:1" ];
+          #   }
         ];
       };
 
     };
     nix-index = {
-      enable = true;
+      enable = false;
       enableZshIntegration = true;
     };
   };
