@@ -18,6 +18,7 @@ in {
     # install golbal packages
     packages = with pkgs; [
       tmux
+      tailscale
 
       nixfmt
       nixpkgs-fmt
