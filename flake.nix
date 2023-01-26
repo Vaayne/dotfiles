@@ -40,4 +40,11 @@
           # to pass through arguments to home.nix
         };
     };
+
+  templates = {
+    python = {
+      path = ./templates/python;
+      description = "Python template, using python3 and pip";
+    };
+  };
 }
