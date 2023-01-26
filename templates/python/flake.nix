@@ -1,5 +1,5 @@
 {
-  description = "A flake for python";
+  description = "A flake for python dev env";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -11,8 +11,10 @@
       in {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
-            python310
-            (python310.withPackages (ps: with ps; [ pip black ruff ]))
+            python311
+            python311Packages.pip
+            ruff
+            black
           ];
           shellHook = ''
             echo "Welcome to python env build by nix"

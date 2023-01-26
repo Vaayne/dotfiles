@@ -25,6 +25,13 @@
       system = env.system;
       pkgs = nixpkgs.legacyPackages.${system};
     in {
+      templates = {
+        python = {
+          path = ./templates/python;
+          description = "Python template, using python3 and pip";
+        };
+      };
+
       homeConfigurations.${env.username} =
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -39,13 +46,6 @@
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
         };
-      templates = {
-        python = {
-          path = ./templates/python;
-          description = "Python template, using python3 and pip";
-        };
-      };
-
     };
 
 }
