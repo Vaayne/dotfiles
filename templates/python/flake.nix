@@ -10,13 +10,20 @@
       let pkgs = nixpkgs.legacyPackages.${system};
       in {
         devShell = pkgs.mkShell {
+          venvDir = "./.venv";
           buildInputs = with pkgs; [
             python311
-            python311Packages.pip
+            python311Packages.venvShellHook
             ruff
             black
           ];
-          shellHook = ''
+          postVenvCreation = ''
+            unset SOURCE_DATE_EPOCH
+            if [ -d requirements.txt ]; then
+              pip install -r requirements.txt
+            fi
+          '';
+          postShellHook = ''
             echo "Welcome to python env build by nix"
           '';
         };
