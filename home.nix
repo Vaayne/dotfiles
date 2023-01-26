@@ -118,6 +118,9 @@ in {
           "cd $HOME/.config/nixpkgs && git add -f env.nix && home-manager build --flake .#$USER && git restore --stage env.nix && cd -";
         hms =
           "cd $HOME/.config/nixpkgs && git add -f env.nix && home-manager switch --flake .#$USER && git restore --stage env.nix && cd -";
+        # use sed -i "" 's/python311/python310/g' flake.nix to replace python3.11 with python3.10 
+        dev-py =
+          "nix flake init --template github:Vaayne/dotfiles#python --refresh";
       };
       history = { size = 10000; };
       # envs
