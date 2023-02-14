@@ -70,7 +70,7 @@ in {
     lazygit.enable = true;
 
     starship = {
-      enable = true;
+      enable = false;
       enableZshIntegration = true;
     };
 
@@ -78,7 +78,15 @@ in {
       enable = true;
       userEmail = env.git.email;
       userName = env.git.user;
-      ignores = [ ".idea" ".vscode" ".pyc" ".ruff_cache" ".direnv" ];
+      ignores = [
+        ".idea"
+        ".vscode"
+        ".pyc"
+        ".venv"
+        ".ruff_cache"
+        ".direnv"
+        "node_modules"
+      ];
       delta = {
         enable = true;
         options = { line-numbers = true; };
@@ -148,10 +156,10 @@ in {
             name = "plugins/git";
             tags = [ "from:oh-my-zsh" ];
           }
-          #   {
-          #     name = "romkatv/powerlevel10k";
-          #     tags = [ "as:theme" "depth:1" ];
-          #   }
+          {
+            name = "romkatv/powerlevel10k";
+            tags = [ "as:theme" "depth:1" ];
+          }
         ];
       };
 
