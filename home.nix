@@ -24,7 +24,7 @@ in {
       nixpkgs-fmt
       nodejs
       yarn
-      nodePackages_latest.bitwarden-cli
+      nodePackages.pnpm
       go
       tealdeer
       # python
@@ -32,7 +32,6 @@ in {
       python311
       python311Packages.pip
       # docker
-      colima
       docker-client
       docker-compose
       devbox
@@ -129,9 +128,10 @@ in {
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD = true;
         EDITOR = "nvim";
       };
-      initExtra = ''
+      initExtra = if env.system == "aarch64-darwin" then ''
         eval "$(/opt/homebrew/bin/brew shellenv)"
-      '';
+      '' else
+        "";
       # plugins
       zplug = {
         enable = true;
