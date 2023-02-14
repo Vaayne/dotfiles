@@ -138,8 +138,10 @@ in {
       };
       initExtra = if env.system == "aarch64-darwin" then ''
         eval "$(/opt/homebrew/bin/brew shellenv)"
-      '' else
-        "";
+        source ~/.p10k.zsh
+      '' else ''
+        source ~/.p10k.zsh
+      '';
       # plugins
       zplug = {
         enable = true;
