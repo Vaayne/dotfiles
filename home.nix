@@ -132,7 +132,8 @@ in {
       history = { size = 10000; };
       # envs
       sessionVariables = {
-        LC_ALL = "C";
+        LC_ALL = "en_US.UTF-8";
+        LANG = "en_US.UTF-8";
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD = true;
         EDITOR = "nvim";
       };
